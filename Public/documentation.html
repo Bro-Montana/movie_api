@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Documentation</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <h1>myFlix Documentation</h1>
+        <li>This app will allow users to search/access information about 
+            movies by name, director, and/ genre. Users will be able to 
+            create profile, update profile information, and create a 
+            favorites list.</li>
+        
+    
+    <div>
+        <h2>Get Movie List</h2>
+        <h4>URL:</h4>
+            <li class="url"> /movies</li>
+        <h4>Method Type:</h4>
+            <li> GET</li>
+        <h4>Description:</h4> 
+            <li>Endpoint allows users to get list of all movies and returns an array with list of objects which contains data about movies.</li>
+        <h4>Query Parameters:</h4> 
+            <li>None</li>
+        <h4>Expected request data:</h4>
+            <li>Required: /movies</li>
+        <h4>Example:</h4>
+            <li class="url">localhost:8080/movies</li>
+        <h4>Expected response data:</h4> 
+            <li>An array with list of movies containing data about movies and every key is described with value of a string.</li>
+        <h4>Example:</h4>
+            <code>
+                <br>
+                {<br>
+                    "Title":"Friday",<br>
+                    "Description":"It's Friday, and Craig(Ice Cube) and Smokey(Chris Tucker) must come up with $200 they owe a local blily or there won't be a Saturday.", <br>
+                    "Genre": { <br>
+                    "Name":"Comedy",<br>
+                    "Description":"A film blends comedy with a life in the hood." <br>
+                    }, <br>
+                    "Director": { <br>
+                    "Name":"Felix Gary Gray", <br>
+                    "Bio":"Felix Gary Gray (born Jliy 17, 1969)[1] is an American film director, film producer, and music video director." <br>
+                    }, <br>
+                    "ImageURL":"https://en.wikipedia.org/wiki/Friday_(1995_film)#/media/File:Fridayposter1995.jpg", <br>
+                    "Year":"1995" <br>
+                },
+            </code>
+            
+        <h4>Response status codes:</h4>
+            <li>200: OK</li>
+            <li>500: Internal server error- Something did not work</li>
+    </div>
+
+
+    <div>
+        <h2>Search Movies by Title</h2>
+        <h3>URL</h3> 
+            <li class="url">/movies/:movieTitle</li>
+        <h4> Method Type:</h4> 
+            <li>GET</li>
+        <h4>Description:</h4> 
+            <li>Endpoint allows users to search a movie by title and returns an object with data about specific movie.</li>
+        <h4>Query Parameters:</h4> 
+            <li>:movieTitle</li>
+        <h4>Expected request data:</h4> 
+            <li>Required: :movieTitle</li>
+        <h4>Example:</h4>
+            <li class="url">localhost:8080/movies/Friday</li>
+        <h4>Expected response data:</h4> 
+            <li>An object containing data about specific movie and every key is described with value of a string.</li>
+        <h4>Example:</h4>
+            <code>
+            <br>
+            {<br>
+                "Title":"Friday",<br>
+                "Description":"It's Friday, and Craig(Ice Cube) and Smokey(Chris Tucker) must come up with $200 they owe a local blily or there won't be a Saturday.", <br>
+                "Genre": { <br>
+                "Name":"Comedy",<br>
+                "Description":"A film blends comedy with a life in the hood." <br>
+                }, <br>
+                "Director": { <br>
+                "Name":"Felix Gary Gray", <br>
+                "Bio":"Felix Gary Gray (born Jliy 17, 1969)[1] is an American film director, film producer, and music video director." <br>
+                }, <br>
+                "ImageURL":"https://en.wikipedia.org/wiki/Friday_(1995_film)#/media/File:Fridayposter1995.jpg", <br>
+                "Year":"1995" <br>
+            },
+            </code>
+            
+                
+        <h4>Response status codes:</h4>
+            <li>201: OK</li>
+            <li>500: Internal server error- Something did not work</li>
+    </div>
+    
+    <div>
+        <h2>Get a Genre</h2>
+        <h3>URL</h3> 
+            <li class="url">/movies/genre/:genreName</li>
+        <h4> Method Type:</h4> 
+            <li>GET</li>
+        <h4>Description:</h4> 
+            <li>This endpoint allows users to search for a genre. Endpoint returns an object with data about specific genre.</li>
+        <h4>Query Parameters:</h4> 
+            <li>:genreName</li>
+        <h4>Expected request data:</h4> 
+            <li>Required: :genreName</li>
+        <h4>Example:</h4>
+            <li class="url">localhost:8080/movies/genre/Comedy</li>
+        <h4>Expected response data:</h4>
+            <li>An object containing data about specific genre. Every key is described with value of a string.</li>
+        <h4>Example:</h4>
+            <code>
+                { <br>
+                "Name":"Comedy",<br>
+                "Description":"Comedies are generally light-hearted dramas and are made to amuse and entertain the audiences."<br>
+                },
+            </code>
+            
+        <h4>Response status codes:</h4>
+            <li>200: OK- JSON object</li>
+            <li>400: Bad request- Genre not found!</li>
+            <li>500: Internal server error- Something did not work.</li>
+    </div>
+   
+    <div>
+        <h2> Find a Director</h2>
+        <h3>URL</h3> 
+            <li class="url">/movies/directors/:directorName</li>
+        <h4> Method Type:</h4> 
+            <li>GET</li>
+        <h4>Description:</h4> 
+            <li>Endpoint allows users to search for a specific directors and returns an object with data about specific director.</li>
+        <h4>Query Parameters:</h4> 
+            <li>:directorName</li>
+        <h4>Expected request data:</h4> 
+            <li>Required: :directorName</li>
+        <h4>Example:</h4>
+            <li class="url">localhost:8080/movies/directors/Felix%20Gary%20Gray</li>
+        <h4>Expected response data:</h4> 
+            <li>An object containing data about specific director and every key is described with value of a string.</li>
+        <h4>Example:</h4>
+            <code>
+                {<br>
+                "Name":"Felix Gary Gray", <br>
+                "Bio":"Felix Gary Gray (born Jliy 17, 1969)[1] is an American film director, film producer, and music video director." <br>
+                },
+            </code>
+            
+        <h4>Response status codes:</h4>
+            <li>200: OK</li>
+            <li>400: Bad request- Director not found!</li>
+            <li>500: Internal server error- Something did not work.</li>
+    </div>
+
+    <div>
+        <h2>Adding a Movie to Favorites</h2>
+        <h3>URL</h3> 
+            <li class="url">/users/:id/movieTitle</li>
+        <h4>Method Type:</h4> 
+            <li>POST</li>
+        <h4>Description:</h4>
+            <li>This endpoint allows users to add movie to their favorite list.Endpoint returns an JSON object with users data including updated favorite movies array.</li>
+        <h4>Query Parameters:</h4> 
+            <li>:id, :movieTitle</li>
+        <h4>Expected request data:</h4>
+            <li> Required: :id, :movieTitle</li>
+        <h4>Example:</h4>
+            <li class="url">localhost:8080/users/1/movies/New%20Movie</li>
+        <h4>Expected response data:</h4> 
+            <li>A message indicating the movie has been added to the user's array.</li>
+            <code><br>
+                {<br>
+                    "Friday has been added to your favorites!"<br>
+                }
+            </code>
+            
+        <h4>Response status codes:</h4>
+            <li>200: OK- Updated users array list</li>
+            <li>500: Internal server error- Something did not work</li>
+    </div>
+        
+    <div>
+        <h2>Removing a Movie from Favorites</h2>
+        <h3>URL</h3> 
+            <li class="url">/users/:id/:movieTitle</li>
+        <h4>Method Type:</h4>
+            <li>DELETE</li>
+        <h4>Description:</h4> 
+            <li>This endpoint allows users to remove movie from their list. Endpoint returns an JSON object with users data including updated favorite movies array.</li>
+        <h4>Query Parameters:</h4> 
+            <li>:id, :movieTitle</li>
+        <h4>Expected request data:</h4> 
+            <li>Required: /id, /movieTitle</li>
+        <h4>Example:</h4>
+            <li class="url">localhost:8080/users/1/movies/Hot%20Rod</li>
+        <h4>Expected response data:</h4> 
+            <li>A message indicating the movie has been removed from the user's array.</li>
+        <h4>Example:</h4>
+        <code><br>
+            {<br>
+              "Friday has been removed from your favorites!"<br>
+            }
+          </code>
+        
+        <h4>Response status codes:</h4>
+            <li>200: OK- Movie has been removed from users list!</li>
+            <li>500: Internal server error- Something did not work</li>
+    </div>
+
+    <div>
+        <h2>Adding Users</h2>
+        <h3>URL</h3> 
+            <li class="url">/users</li>
+        <h4>Method Type:</h4>
+            <li>POST</li>
+        <h4>Description:</h4>
+            <li>Endpoint allows users to register and returns a JSON object with key values. For key "name" it returns string,for "favorite movies" array, and for an "id" string.</li>
+        <h4>Query Parameters:</h4>
+            <li>None</li>
+        <h4>Expected request data:</h4> 
+            <li>JSON object with data about user. <span class="required">Required</span>: "name"</li>
+        <h4>Example:</h4>
+            <code>
+                {<br>
+                    "Name": "Mary",<br>
+                }
+            </code>
+        <h4>Expected response data:</h4> 
+            <li>JSON object with data about user which includes automatic generated ID</li>
+        <h4>Example:</h4>
+            <code>
+                {<br>
+                "Name": "Mary",<br>
+                "Email": "mary@email.com," <br>
+                "Password": "password123," <br>
+                "favorite movies": [],<br>
+                "id": "8a757bb9-2eec-46bf-86f0-443ff742cf3a"<br>
+                }
+            </code>
+                
+        <h4>Response status codes:</h4>
+            <li>201: Created- New user has been added</li>
+            <li>400: Bad request- User already exists</li>
+    </div>
+        
+    <div>
+        <h2>Updating Usernames</h2>
+        <h3>URL</h3> 
+            <li class="url">/users/:id</li>
+        <h4>Method Type:</h4>
+            <li>POST</li>
+        <h4>Description:</h4> 
+            <li>Endpoint allows users to update their username and returns a JSON object with few key values. For key "name" it returns string, for "favorite movies" array, and for an "id" integer.</li>
+        <h4>Query Parameters:</h4> 
+            <li>:id</li>
+        <h4>Expected request data:</h4> 
+            <li>JSON object with data about user.</li>
+        <h4>Required:</h4> 
+            <li>:id</li>
+            <h4>Example:</h4>
+            <li class="url">localhost:8080/users/1</li><br>
+            <code>
+                {<br>
+                  "Username": "newUsername"<br>
+                }
+              </code>
+            
+        <h4>Expected response data:</h4> 
+            <li>JSON object with data about user which includes,"id" with integer value, "Name", and "favorite movies" with an array.</li>
+        <h4>Example:</h4>
+            <code>
+                {<br>
+                "Name": "Slim",<br>
+                "Email": "slim@email.com", <br>
+                "Password": "password1", <br>
+                "favoriteMovies": [],<br>
+                "id": 5g890ik9-4vnk-63ed-96f2-678ii889rf4ab,<br>
+                }
+            </code>
+            
+        <h4>Response status codes:</h4>
+            <li>200: OK- New user has been added</li>
+            <li>500: Internal server error- Something did not work</li>
+    </div>
+
+    <div>
+        <h2>Deleting Users</h2>
+        <h3>URL</h3>
+            <li class="url">/users/:id</li>
+        <h4>Method Type:</h4>
+            <li>DELETE</li>
+        <h4>Description:</h4> 
+            <li>Endpoint allows users remove their account by their Username and returns a confirmation message that users account has been deleted.</li>
+        <h4>Query Parameters:</h4> 
+            <li>:id,</li>
+        <h4>Expected request data:</h4> 
+            <li>Required: :id</li>
+        <h4>Example:</h4>
+            <li class="url">localhost:8080/users/1</li>
+        <h4>Expected response data:</h4> 
+            <li>A confirmation message that users account has been deleted.</li>
+        <h4>Example:</h4>
+            <code class="code">
+                {
+                "user 1 has been deleted"
+                }
+            </code>
+            
+        <h4>Response status codes:</h4>
+            <li>200: OK- Users account has been deleted</li>
+            <li>400: Bad request- Users name was not found</li>
+            <li>500: Internal server error- Something did not work</li>
+    </div>
+        
+    </body>
+</html>
