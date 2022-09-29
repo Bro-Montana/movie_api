@@ -57,15 +57,15 @@
     <div>
         <h2>Search Movies by Title</h2>
         <h3>URL</h3> 
-            <li class="url">/movies/:movieTitle</li>
+            <li class="url">/movies/:Title</li>
         <h4> Method Type:</h4> 
             <li>GET</li>
         <h4>Description:</h4> 
             <li>Endpoint allows users to search a movie by title and returns an object with data about specific movie.</li>
         <h4>Query Parameters:</h4> 
-            <li>:movieTitle</li>
+            <li>:Title</li>
         <h4>Expected request data:</h4> 
-            <li>Required: :movieTitle</li>
+            <li>Required: :Title</li>
         <h4>Example:</h4>
             <li class="url">localhost:8080/movies/Friday</li>
         <h4>Expected response data:</h4> 
@@ -158,17 +158,15 @@
     <div>
         <h2>Adding a Movie to Favorites</h2>
         <h3>URL</h3> 
-            <li class="url">/users/:id/movieTitle</li>
+            <li class="url">/users/:Username/movies/:MovieID</li>
         <h4>Method Type:</h4> 
             <li>POST</li>
         <h4>Description:</h4>
             <li>This endpoint allows users to add movie to their favorite list.Endpoint returns an JSON object with users data including updated favorite movies array.</li>
         <h4>Query Parameters:</h4> 
-            <li>:id, :movieTitle</li>
-        <h4>Expected request data:</h4>
-            <li> Required: :id, :movieTitle</li>
+            <li>:Username, :MovieID</li>
         <h4>Example:</h4>
-            <li class="url">localhost:8080/users/1/movies/New%20Movie</li>
+            <li class="url">localhost:8080/users/slime/movies/id_46546363JK;K5;63</li>
         <h4>Expected response data:</h4> 
             <li>A message indicating the movie has been added to the user's array.</li>
             <code><br>
@@ -185,17 +183,15 @@
     <div>
         <h2>Removing a Movie from Favorites</h2>
         <h3>URL</h3> 
-            <li class="url">/users/:id/:movieTitle</li>
+            <li class="url">/users/:Username/movies/:MovieID</li>
         <h4>Method Type:</h4>
             <li>DELETE</li>
         <h4>Description:</h4> 
             <li>This endpoint allows users to remove movie from their list. Endpoint returns an JSON object with users data including updated favorite movies array.</li>
         <h4>Query Parameters:</h4> 
-            <li>:id, :movieTitle</li>
-        <h4>Expected request data:</h4> 
-            <li>Required: /id, /movieTitle</li>
+            <li>:Username, :MovieID</li>
         <h4>Example:</h4>
-            <li class="url">localhost:8080/users/1/movies/Hot%20Rod</li>
+            <li class="url">localhost:8080/users/slime/movies/id_46546363JK;K5;6</li>
         <h4>Expected response data:</h4> 
             <li>A message indicating the movie has been removed from the user's array.</li>
         <h4>Example:</h4>
@@ -211,7 +207,7 @@
     </div>
 
     <div>
-        <h2>Adding Users</h2>
+        <h2>Creating New User</h2>
         <h3>URL</h3> 
             <li class="url">/users</li>
         <h4>Method Type:</h4>
@@ -219,7 +215,7 @@
         <h4>Description:</h4>
             <li>Endpoint allows users to register and returns a JSON object with key values. For key "name" it returns string,for "favorite movies" array, and for an "id" string.</li>
         <h4>Query Parameters:</h4>
-            <li>None</li>
+            <li>:Username</li>
         <h4>Expected request data:</h4> 
             <li>JSON object with data about user. <span class="required">Required</span>: "name"</li>
         <h4>Example:</h4>
@@ -233,10 +229,10 @@
         <h4>Example:</h4>
             <code>
                 {<br>
-                "Name": "Mary",<br>
+                "Username": "Mary",<br>
                 "Email": "mary@email.com," <br>
                 "Password": "password123," <br>
-                "favorite movies": [],<br>
+                "Birthdate": "1990-01-01",<br>
                 "id": "8a757bb9-2eec-46bf-86f0-443ff742cf3a"<br>
                 }
             </code>
@@ -244,14 +240,15 @@
         <h4>Response status codes:</h4>
             <li>201: Created- New user has been added</li>
             <li>400: Bad request- User already exists</li>
+            <li>500: Error</li>
     </div>
         
     <div>
         <h2>Updating Usernames</h2>
         <h3>URL</h3> 
-            <li class="url">/users/:id</li>
+            <li class="url">/users/:Username</li>
         <h4>Method Type:</h4>
-            <li>POST</li>
+            <li>PUT</li>
         <h4>Description:</h4> 
             <li>Endpoint allows users to update their username and returns a JSON object with few key values. For key "name" it returns string, for "favorite movies" array, and for an "id" integer.</li>
         <h4>Query Parameters:</h4> 
@@ -261,7 +258,7 @@
         <h4>Required:</h4> 
             <li>:id</li>
             <h4>Example:</h4>
-            <li class="url">localhost:8080/users/1</li><br>
+            <li class="url">localhost:8080/users/Slim</li><br>
             <code>
                 {<br>
                   "Username": "newUsername"<br>
@@ -287,25 +284,93 @@
     </div>
 
     <div>
+        <h2>Get All Users</h2>
+        <h3>URL</h3>
+            <li class="url">/users</li>
+        <h4>Method Type</h4>
+            <li>GET</li>
+        <h4>Description</h4>
+            <li>Endpoint requests all users in database</li>
+        <h4>Query Parameters</h4>
+            <li>/users</li>
+        <h4>Example:</h4>
+            <li>localhost:8080/users/</li>
+        <h4>Expected response data</h4>
+            <li>List of users</li>
+        <h4>Example:</h4>
+            <code>
+                            [
+                {
+                    "_id": "631253a35d19ef702663aac8",
+                    "Username": "homie01",
+                    "Password": "12345",
+                    "Email": "bighomie@gmail.com",
+                    "Birthdate": "1990-02-23T00:00:00.000Z",
+                    "FavoriteMovies": [
+                        "631252c75d19ef702663aac7"
+                    ]
+                },
+                {
+                    "_id": "631254015d19ef702663aac9",
+                    "Username": "shorty22",
+                    "Password": "pass1",
+                    "Email": "shorty@yahoo.com",
+                    "Birthdate": "1997-03-22T00:00:00.000Z",
+                    "FavoriteMovies": [
+                        "631252245d19ef702663aac6"
+                    ]
+            </code>
+    </div>
+
+    <div>
+        <h2>Get User by Username</h2>
+        <h3>URL</h3>
+            <li class="url">/users</li>
+        <h4>Method Type</h4>
+            <li>GET</li>
+        <h4>Description</h4>
+            <li>Endpoint requests all users in database</li>
+        <h4>Query Parameters</h4>
+            <li>/users/:Username</li>
+        <h4>Example:</h4>
+            <li>localhost:8080/users/:homie01</li>
+        <h4>Expected response data</h4>
+            <li>A User's Data</li>
+        <h4>Example:</h4>
+            <code>
+                            
+                {
+                    "_id": "631253a35d19ef702663aac8",
+                    "Username": "homie01",
+                    "Password": "12345",
+                    "Email": "bighomie@gmail.com",
+                    "Birthdate": "1990-02-23T00:00:00.000Z",
+                    "FavoriteMovies": [
+                        "631252c75d19ef702663aac7"
+                    ]
+                }
+            </code>
+    </div>
+
+
+    <div>
         <h2>Deleting Users</h2>
         <h3>URL</h3>
-            <li class="url">/users/:id</li>
+            <li class="url">/users/:Username</li>
         <h4>Method Type:</h4>
             <li>DELETE</li>
         <h4>Description:</h4> 
             <li>Endpoint allows users remove their account by their Username and returns a confirmation message that users account has been deleted.</li>
         <h4>Query Parameters:</h4> 
-            <li>:id,</li>
-        <h4>Expected request data:</h4> 
-            <li>Required: :id</li>
+            <li>:Username,</li>
         <h4>Example:</h4>
-            <li class="url">localhost:8080/users/1</li>
+            <li class="url">localhost:8080/users/Slim</li>
         <h4>Expected response data:</h4> 
             <li>A confirmation message that users account has been deleted.</li>
         <h4>Example:</h4>
             <code class="code">
                 {
-                "user 1 has been deleted"
+                Slim has been deleted"
                 }
             </code>
             
