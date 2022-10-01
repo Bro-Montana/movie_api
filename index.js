@@ -10,6 +10,11 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
+const { check, validationResult } = require('express-validator');
+
+const cors = require('cors');
+app.use(cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -24,7 +29,23 @@ mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, 
     
 
 //create username
-app.post('/users', (req, res) => {
+app.post('/users',
+[
+    check('Username', 'Username is required').isLength({ min: 5}), //username is required minimum of 5 characters
+    check('Username', 'Username not allowed  to contain non alpha characters').isAlphanumeric(), // alphanumeric char only
+    check('Password', 'Password is required').not().isEmpty(), // confirms password field is not empty
+    check('Email', 'Email is not valid').isEmail() // check email validity
+],
+(req, res) => {
+
+    //check validation for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashedPassword(req.body.Password); // password hashing
     Users.findOne({ Username: req.body.Username })
         .then((user) => {
             if (user) {
@@ -33,7 +54,7 @@ app.post('/users', (req, res) => {
                 Users
                     .create ({
                         Username: req.body.Username,
-                        Password: req.body.Password,
+                        Password: hashedPassword,
                         Email: req.body.Email,
                         Birthday: req.body.Birthday
                     })
@@ -209,9 +230,14 @@ app.use((err, req, res, next) => {
     res.status(500).send("Something isn't right");
 });
 
-
-app.listen(8080, () => {
-    console.log('App is listening on 8080...hopefully!');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+    console.log('Listening on Port ' + port);
 });
+
+
+// app.listen(8080, () => {
+//     console.log('App is listening on 8080...hopefully!');
+// });
 
 
