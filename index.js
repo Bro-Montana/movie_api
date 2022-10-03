@@ -29,7 +29,9 @@ require('./passport');
 //remotely hosted db
 mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true});
 
-
+app.get('/', (req, res)=> {
+    res.send('it is working!')
+});
     
 
 //create username
