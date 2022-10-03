@@ -23,7 +23,11 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport'); 
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true});
+//Locally hosted db below 
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true});
+
+//remotely hosted db
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true});
 
 
     
@@ -239,5 +243,6 @@ app.listen(port, '0.0.0.0', () => {
 // app.listen(8080, () => {
 //     console.log('App is listening on 8080...hopefully!');
 // });
+
 
 
