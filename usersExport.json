@@ -1,0 +1,4 @@
+{"_id":{"$oid":"631253a35d19ef702663aac8"},"Username":"homie01","Password":"12345","Email":"bighomie@gmail.com","Birthdate":{"$date":"1990-02-23T00:00:00Z"},"FavoriteMovies":[{"$oid":"631252c75d19ef702663aac7"}]}
+{"_id":{"$oid":"631254015d19ef702663aac9"},"Username":"shorty22","Password":"pass1","Email":"shorty@yahoo.com","Birthdate":{"$date":"1997-03-22T00:00:00Z"},"FavoriteMovies":[{"$oid":"631252245d19ef702663aac6"}]}
+{"_id":{"$oid":"6312545c5d19ef702663aaca"},"Username":"lilmama","Password":"54321","Email":"mamalil@hotmail.com","Birthdate":{"$date":"1989-04-04T00:00:00Z"},"FavoriteMovies":[{"$oid":"631251735d19ef702663aac5"}]}
+{"_id":{"$oid":"631255195d19ef702663aacb"},"Username":"striker","Password":"turkey","Email":"hambone@bowl.net","Birthdate":{"$date":"1991-01-29T00:00:00Z"},"FavoriteMovies":[{"$oid":"63124cce5d19ef702663aac1"},{"$oid":"63124d9b5d19ef702663aac2"}]}
